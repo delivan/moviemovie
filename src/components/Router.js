@@ -10,6 +10,8 @@ import TV from "routes/TV";
 import Search from "routes/Search";
 import Header from "./Header";
 
+import "../api";
+
 export default () => (
   <Router>
     <>
