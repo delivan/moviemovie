@@ -28,8 +28,8 @@ export default class extends React.Component {
         airingToday,
         loading: false
       });
-    } catch {
-      this.setState({ error: "Can't get TV program" });
+    } catch (error) {
+      this.setState({ error, loading: false });
     }
   }
 
