@@ -1,6 +1,7 @@
 import React from "react";
 import TVPresenter from "./TVPresenter";
 import { tvAPI } from "../../api";
+import Loader from "../../components/Loader";
 
 export default class extends React.Component {
   state = {
@@ -35,7 +36,10 @@ export default class extends React.Component {
 
   render() {
     const { topRated, popular, airingToday, error, loading } = this.state;
-    return (
+
+    return loading ? (
+      <Loader />
+    ) : (
       <TVPresenter
         topRated={topRated}
         popular={popular}
