@@ -3,6 +3,7 @@ import Proptypes from "prop-types";
 import styled from "styled-components";
 import Loader from "components/Loader";
 import Section from "components/Section";
+import ErrorMessage from "../../components/ErrorMessage";
 
 const Container = styled.div`
   padding: 0 20px;
@@ -10,7 +11,14 @@ const Container = styled.div`
 
 const Form = styled.form``;
 
-const Input = styled.input``;
+const Input = styled.input`
+  all: unset;
+  width: 100%;
+  font-size: 30px;
+  color: white;
+  background-color: rgba(20, 20, 20, 1);
+  border: none;
+`;
 
 const SearchPresenter = ({
   movieResults,
@@ -50,6 +58,11 @@ const SearchPresenter = ({
           )}
         </Container>
       )}
+      {error && <ErrorMessage text={error} />}
+      {movieResults &&
+        movieResults.length === 0 &&
+        tvResults &&
+        tvResults.length === 0 && <ErrorMessage text={"Nothing found"} />}
     </Container>
   );
 };

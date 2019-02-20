@@ -40,15 +40,13 @@ export default class extends React.Component {
         data: { results: tvResults }
       } = await tvAPI.getSearch(term);
 
-      console.log("tvResults", tvResults);
-
       this.setState({
         movieResults,
         tvResults,
         loading: false
       });
     } catch (error) {
-      this.setState({ error, loading: false });
+      this.setState({ error: "Can't Search by term", loading: false });
     }
   }
 

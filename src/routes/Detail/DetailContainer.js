@@ -47,7 +47,7 @@ export default class extends React.Component {
       this.setState({ result, loading: false });
     } catch (error) {
       console.log(error);
-      this.setState({ loading: false, error });
+      this.setState({ loading: false, error: "Can't get detail" });
     }
   }
 
