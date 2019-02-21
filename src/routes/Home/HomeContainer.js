@@ -22,6 +22,8 @@ export default class extends React.Component {
       const {
         data: { results: popular }
       } = await movieAPI.getPopular();
+
+      console.log(upcoming);
       this.setState({ nowPlaying, upcoming, popular, loading: false });
     } catch (error) {
       this.setState({ error: "Can't get movies", loading: false });
