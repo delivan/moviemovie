@@ -33,7 +33,7 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) =>
       )}
       {upcoming && upcoming.length > 0 && (
         <Section title="Upcoming">
-          {nowPlaying.map(movie => (
+          {upcoming.map(movie => (
             <Poster 
               key={movie.id}
               id={movie.id} 
@@ -48,7 +48,7 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) =>
       )}
       {popular && popular.length > 0 && (
         <Section title="Popular">
-          {nowPlaying.map(movie => (
+          {popular.map(movie => (
             <Poster 
               key={movie.id}
               id={movie.id} 

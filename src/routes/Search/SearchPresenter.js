@@ -59,14 +59,14 @@ const SearchPresenter = ({
           )}
           {tvResults && tvResults.length > 0 && (
             <Section title="TV Show Results">
-              {tvResults.map(tv => (
+              {tvResults.map(tvShow => (
                 <Poster 
-                  key={tv.id}
-                  id={tv.id} 
-                  imgUrl={tv.poster_path}
-                  rating={tv.vote_average}
-                  title={tv.original_name}
-                  year={tv.first_air_date && tv.first_air_date.substring(0, 4)}
+                  key={tvShow.id}
+                  id={tvShow.id} 
+                  imgUrl={tvShow.poster_path}
+                  rating={tvShow.vote_average}
+                  title={tvShow.original_name}
+                  year={tvShow.first_air_date && tvShow.first_air_date.substring(0, 4)}
                 />
               ))}
             </Section>

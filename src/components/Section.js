@@ -11,7 +11,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.span`
-  font-size: 1rem;
+  font-size: 1.8rem;
   font-weight: 500;
   margin-bottom: 20px;
 `;
@@ -30,7 +30,7 @@ const Section = ({ title, children }) => (
   </Container>
 );
 
-Section.porpTypes = {
+Section.propTypes = {
   title: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

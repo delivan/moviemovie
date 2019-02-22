@@ -3,23 +3,56 @@ import Proptypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const Container = styled.div``;
+const Container = styled.div`
+  font-size: 12px;
+`;
 
-const ImageContainer = styled.div``;
+const Image = styled.div`
+  background-image: url(${props => props.bgUrl});
+  background-size: cover;
+  background-position: center center;
+  height: 180px;
+  border-radius: 4px;
+  transition: opacity 0.2s ease-in-out;
+`;
 
-const Image = styled.img``;
+const Rating = styled.span`
+  bottom: 3px;
+  left: 3px;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+`;
 
-const Rating = styled.span``;
+const ImageContainer = styled.div`
+  margin-bottom: 5px;
+  position: relative;
 
-const Title = styled.span``;
+  &:hover {
+    ${Image} {
+      opacity: 0.3;
+    }
 
-const Year = styled.span``;
+    ${Rating} {
+      opacity: 1;
+    }
+  }
+`;
+
+const Title = styled.span`
+  display: block;
+`;
+
+const Year = styled.span`
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+`;
 
 const Poster = ({ id, imgUrl, rating, title, year, isMovie = false }) => (
   <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
     <Container>
       <ImageContainer>
-        <Image bgUrl={imgUrl} />
+        <Image bgUrl={imgUrl ? `https://image.tmdb.org/t/p/w500${imgUrl}` : '/assets/noposter.jpg'} />
         <Rating>
           <span role="img" aria-label="rating">
             ⭐️
@@ -27,7 +60,7 @@ const Poster = ({ id, imgUrl, rating, title, year, isMovie = false }) => (
           {rating}/10
         </Rating>
       </ImageContainer>
-      <Title>{title}</Title>
+      <Title>{title.length > 18 ? `${title.substring(0, 18)}...` : title}</Title>
       <Year>{year}</Year>
     </Container>
   </Link>
