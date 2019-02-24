@@ -3,15 +3,23 @@ import SearchPresenter from "./SearchPresenter";
 import { movieAPI, tvAPI } from "../../api";
 
 export default class extends React.Component {
-  state = {
-    movieResults: null,
-    tvResults: null,
-    searchTerm: "",
-    error: null,
-    loading: false
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      movieResults: null,
+      tvResults: null,
+      searchTerm: "",
+      error: null,
+      loading: false
+    };
+
+    this.timer = null;
+  }
 
   handleChange = e => {
+    this.setState({ loading: true });
+
     const {
       target: { value }
     } = e;
@@ -19,6 +27,13 @@ export default class extends React.Component {
     this.setState({
       searchTerm: value
     });
+
+    if (value !== "") {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => this.searchByTerm(value), 500);
+    } else {
+      this.setState({ loading: false });
+    }
   };
 
   handleSubmit = e => {
@@ -31,7 +46,6 @@ export default class extends React.Component {
   };
 
   async searchByTerm(term) {
-    this.setState({ loading: true });
     try {
       const {
         data: { results: movieResults }

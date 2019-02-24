@@ -8,7 +8,7 @@ import Poster from "components/Poster";
 
 const Container = styled.div`
   padding: 20px 20px;
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
 `;
 
 const Results = styled.div``;
@@ -22,6 +22,10 @@ const Input = styled.input`
   color: white;
   background-color: rgba(20, 20, 20, 1);
   border: none;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
 `;
 
 const SearchPresenter = ({
@@ -83,7 +87,8 @@ const SearchPresenter = ({
         </Results>
       )}
       {error && <ErrorMessage text={error} />}
-      {movieResults &&
+      {!loading &&
+        movieResults &&
         movieResults.length === 0 &&
         tvResults &&
         tvResults.length === 0 && <ErrorMessage text={"Nothing found"} />}
