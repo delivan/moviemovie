@@ -17,7 +17,7 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) =>
   ) : (
     <Container>
       {popular && popular.length > 0 && (
-        <Section title="인기">
+        <Section title="인기(전세계 기준)">
           {popular.map(movie => (
             <Poster
               key={movie.id}

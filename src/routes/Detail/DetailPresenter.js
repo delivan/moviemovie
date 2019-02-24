@@ -44,6 +44,7 @@ const Cover = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
+    height: 350px;
   }
 `;
 
@@ -89,6 +90,7 @@ const VideoContainer = styled.div`
   overflow: scroll;
   bottom: 0;
   max-height: 190px;
+  width: 100%;
 
   @media (max-width: 768px) {
     position: static;
