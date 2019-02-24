@@ -89,7 +89,7 @@ const VideoContainer = styled.div`
   display: inline-block;
   overflow: scroll;
   bottom: 0;
-  max-height: 190px;
+  max-height: 320px;
   width: 100%;
 
   @media (max-width: 768px) {
