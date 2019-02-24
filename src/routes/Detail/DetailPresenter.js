@@ -48,7 +48,7 @@ const Cover = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 400px;
+    height: 420px;
   }
 `;
 
@@ -59,7 +59,7 @@ const Data = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    margin-top: 80px;
+    margin-top: 40px;
     padding: 0;
   }
 `;
