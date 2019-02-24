@@ -10,6 +10,7 @@ import TV from "routes/TV";
 import Search from "routes/Search";
 import Detail from "routes/Detail";
 import Header from "./Header";
+import Footer from "./Footer";
 
 import "../api";
 
@@ -25,6 +26,7 @@ export default () => (
         <Route path="/tv/:id" component={Detail} />
         <Redirect from="*" to="/" />
       </Switch>
+      <Footer />
     </>
   </Router>
 );
