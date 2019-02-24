@@ -5,7 +5,7 @@ import Loader from "../../components/Loader";
 
 export default class extends React.Component {
   state = {
-    topRated: null,
+    onTheAir: null,
     popular: null,
     airingToday: null,
     error: null,
@@ -15,8 +15,8 @@ export default class extends React.Component {
   async componentDidMount() {
     try {
       const {
-        data: { results: topRated }
-      } = await tvAPI.getTopRated();
+        data: { results: onTheAir }
+      } = await tvAPI.getOnTheAir();
       const {
         data: { results: popular }
       } = await tvAPI.getPopular();
@@ -24,7 +24,7 @@ export default class extends React.Component {
         data: { results: airingToday }
       } = await tvAPI.getAiringToday();
       this.setState({
-        topRated,
+        onTheAir,
         popular,
         airingToday,
         loading: false
@@ -35,13 +35,13 @@ export default class extends React.Component {
   }
 
   render() {
-    const { topRated, popular, airingToday, error, loading } = this.state;
+    const { onTheAir, popular, airingToday, error, loading } = this.state;
 
     return loading ? (
       <Loader />
     ) : (
       <TVPresenter
-        topRated={topRated}
+        onTheAir={onTheAir}
         popular={popular}
         airingToday={airingToday}
         error={error}

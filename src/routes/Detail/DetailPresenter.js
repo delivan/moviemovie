@@ -62,6 +62,17 @@ const Info = styled.span``;
 
 const Overview = styled.p`
   line-height: 18px;
+  margin-bottom: 120px;
+`;
+
+const VideoContainer = styled.div`
+  display: inline-block;
+`;
+
+const Video = styled.iframe`
+  width: 270px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 `;
 
 const DetailPresenter = ({ result, isMovie, error, loading }) =>
@@ -85,12 +96,19 @@ const DetailPresenter = ({ result, isMovie, error, loading }) =>
           <InfoContainer>
             <Info>
               {isMovie
-                ? result.release_date.substring(0, 4)
-                : result.first_air_date.substring(0, 4)}
+                ? result.release_date && result.release_date.substring(0, 4)
+                : result.first_air_date &&
+                  result.first_air_date.substring(0, 4)}
             </Info>
             <InfoDivider>·</InfoDivider>
             <Info>{`${
-              isMovie ? result.runtime : result.episode_run_time[0]
+              isMovie
+                ? result.runtime
+                  ? result.runtime
+                  : " - "
+                : result.episode_run_time[0]
+                ? result.episode_run_time[0]
+                : " - "
             }분`}</Info>
             <InfoDivider>·</InfoDivider>
             <Info>
@@ -104,6 +122,22 @@ const DetailPresenter = ({ result, isMovie, error, loading }) =>
             <Info>{`⭐️${result.vote_average} / 10`}</Info>
           </InfoContainer>
           <Overview>{result.overview}</Overview>
+          {result.videos.results && (
+            <VideoContainer>
+              {result.videos.results.map((video, index) => {
+                return (
+                  video.site === "YouTube" &&
+                  index < 6 && (
+                    <Video
+                      key={video.id}
+                      src={`https://www.youtube.com/embed/${video.key}`}
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    />
+                  )
+                );
+              })}
+            </VideoContainer>
+          )}
         </Data>
       </Content>
     </Container>

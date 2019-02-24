@@ -4,10 +4,10 @@ import styled from "styled-components";
 import Loader from "components/Loader";
 import Section from "components/Section";
 import ErrorMessage from "../../components/ErrorMessage";
-import Poster from 'components/Poster';
+import Poster from "components/Poster";
 
 const Container = styled.div`
-  padding: 0 20px;
+  padding: 20px 20px;
 `;
 
 const Form = styled.form``;
@@ -46,13 +46,16 @@ const SearchPresenter = ({
           {movieResults && movieResults.length > 0 && (
             <Section title="Movie Results">
               {movieResults.map(movie => (
-                <Poster 
+                <Poster
                   key={movie.id}
-                  id={movie.id} 
+                  id={movie.id}
                   imgUrl={movie.poster_path}
                   rating={movie.vote_average}
                   title={movie.title}
-                  year={movie.release_date && movie.release_date.substring(0, 4)}
+                  year={
+                    movie.release_date && movie.release_date.substring(0, 4)
+                  }
+                  isMovie={true}
                 />
               ))}
             </Section>
@@ -60,13 +63,16 @@ const SearchPresenter = ({
           {tvResults && tvResults.length > 0 && (
             <Section title="TV Show Results">
               {tvResults.map(tvShow => (
-                <Poster 
+                <Poster
                   key={tvShow.id}
-                  id={tvShow.id} 
+                  id={tvShow.id}
                   imgUrl={tvShow.poster_path}
                   rating={tvShow.vote_average}
                   title={tvShow.original_name}
-                  year={tvShow.first_air_date && tvShow.first_air_date.substring(0, 4)}
+                  year={
+                    tvShow.first_air_date &&
+                    tvShow.first_air_date.substring(0, 4)
+                  }
                 />
               ))}
             </Section>

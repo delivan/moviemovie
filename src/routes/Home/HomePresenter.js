@@ -16,12 +16,27 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) =>
     <Loader />
   ) : (
     <Container>
-      {nowPlaying && nowPlaying.length > 0 && (
-        <Section title="Now Playing">
-          {nowPlaying.map(movie => (
-            <Poster 
+      {popular && popular.length > 0 && (
+        <Section title="인기">
+          {popular.map(movie => (
+            <Poster
               key={movie.id}
-              id={movie.id} 
+              id={movie.id}
+              imgUrl={movie.poster_path}
+              rating={movie.vote_average}
+              title={movie.title}
+              year={movie.release_date && movie.release_date.substring(0, 4)}
+              isMovie={true}
+            />
+          ))}
+        </Section>
+      )}
+      {nowPlaying && nowPlaying.length > 0 && (
+        <Section title="상영중">
+          {nowPlaying.map(movie => (
+            <Poster
+              key={movie.id}
+              id={movie.id}
               imgUrl={movie.poster_path}
               rating={movie.vote_average}
               title={movie.title}
@@ -32,11 +47,11 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) =>
         </Section>
       )}
       {upcoming && upcoming.length > 0 && (
-        <Section title="Upcoming">
+        <Section title="개봉 예정">
           {upcoming.map(movie => (
-            <Poster 
+            <Poster
               key={movie.id}
-              id={movie.id} 
+              id={movie.id}
               imgUrl={movie.poster_path}
               rating={movie.vote_average}
               title={movie.title}
@@ -45,21 +60,6 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) =>
             />
           ))}
         </Section>
-      )}
-      {popular && popular.length > 0 && (
-        <Section title="Popular">
-          {popular.map(movie => (
-            <Poster 
-              key={movie.id}
-              id={movie.id} 
-              imgUrl={movie.poster_path}
-              rating={movie.vote_average}
-              title={movie.title}
-              year={movie.release_date && movie.release_date.substring(0, 4)}
-              isMovie={true}
-            />
-          ))}
-        </Section> 
       )}
       {error && <ErrorMessage text={error} />}
     </Container>
