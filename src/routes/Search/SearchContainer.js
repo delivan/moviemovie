@@ -18,11 +18,11 @@ export default class extends React.Component {
   }
 
   handleChange = e => {
-    this.setState({ loading: true });
-
     const {
       target: { value }
     } = e;
+
+    this.setState({ loading: true });
 
     this.setState({
       searchTerm: value
@@ -30,9 +30,9 @@ export default class extends React.Component {
 
     if (value !== "") {
       clearTimeout(this.timer);
-      this.timer = setTimeout(() => this.searchByTerm(value), 500);
+      this.timer = setTimeout(() => this.searchByTerm(value), 200);
     } else {
-      this.setState({ loading: false });
+      this.setState({ movieResults: null, tvResults: null, loading: false });
     }
   };
 
@@ -46,6 +46,8 @@ export default class extends React.Component {
   };
 
   async searchByTerm(term) {
+    const { searchTerm } = this.state;
+
     try {
       const {
         data: { results: movieResults }
@@ -53,6 +55,10 @@ export default class extends React.Component {
       const {
         data: { results: tvResults }
       } = await tvAPI.getSearch(term);
+
+      if (!searchTerm) {
+        return;
+      }
 
       this.setState({
         movieResults,
