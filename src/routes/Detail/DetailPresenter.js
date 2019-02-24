@@ -25,10 +25,14 @@ const Backdrop = styled.div`
 `;
 
 const Content = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
-  position: relative;
   height: 100%;
+
+  @media (max-width: 768px) {
+    display: inline-block;
+  }
 `;
 
 const Cover = styled.div`
@@ -37,11 +41,22 @@ const Cover = styled.div`
   background-position: center center;
   background-size: cover;
   height: 100%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Data = styled.div`
   width: 70%;
   padding: 0 20px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 80px;
+    padding: 0;
+  }
 `;
 
 const Title = styled.h3`
@@ -62,15 +77,29 @@ const Info = styled.span``;
 
 const Overview = styled.p`
   line-height: 18px;
-  margin-bottom: 120px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+  }
 `;
 
 const VideoContainer = styled.div`
+  position: absolute;
   display: inline-block;
+  overflow: scroll;
+  bottom: 0;
+  max-height: 190px;
+
+  @media (max-width: 768px) {
+    position: static;
+    overflow: unset;
+    max-height: none;
+  }
 `;
 
 const Video = styled.iframe`
   width: 270px;
+  height: 150px;
   margin-right: 20px;
   margin-bottom: 20px;
 `;
