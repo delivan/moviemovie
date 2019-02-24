@@ -173,7 +173,7 @@ const DetailPresenter = ({ result, isMovie, error, loading }) =>
   );
 
 DetailPresenter.propTypes = {
-  result: Proptypes.array,
+  result: Proptypes.object,
   isMovie: Proptypes.bool,
   error: Proptypes.string,
   loading: Proptypes.bool.isRequired

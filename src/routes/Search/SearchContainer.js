@@ -46,6 +46,7 @@ export default class extends React.Component {
         loading: false
       });
     } catch (error) {
+      console.log(error);
       this.setState({ error: "Can't Search by term", loading: false });
     }
   }

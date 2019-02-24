@@ -10,6 +10,8 @@ const Container = styled.div`
   padding: 20px 20px;
 `;
 
+const Results = styled.div``;
+
 const Form = styled.form``;
 
 const Input = styled.input`
@@ -34,7 +36,7 @@ const SearchPresenter = ({
     <Container>
       <Form onSubmit={handleSubmit}>
         <Input
-          placeholder="Search Movies or TV Shows..."
+          placeholder="검색어를 입력하세요..."
           value={searchTerm}
           onChange={handleChange}
         />
@@ -42,9 +44,9 @@ const SearchPresenter = ({
       {loading ? (
         <Loader />
       ) : (
-        <Container>
+        <Results>
           {movieResults && movieResults.length > 0 && (
-            <Section title="Movie Results">
+            <Section title="영화">
               {movieResults.map(movie => (
                 <Poster
                   key={movie.id}
@@ -61,7 +63,7 @@ const SearchPresenter = ({
             </Section>
           )}
           {tvResults && tvResults.length > 0 && (
-            <Section title="TV Show Results">
+            <Section title="TV 프로그램">
               {tvResults.map(tvShow => (
                 <Poster
                   key={tvShow.id}
@@ -77,7 +79,7 @@ const SearchPresenter = ({
               ))}
             </Section>
           )}
-        </Container>
+        </Results>
       )}
       {error && <ErrorMessage text={error} />}
       {movieResults &&
