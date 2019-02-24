@@ -44,7 +44,7 @@ const Cover = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 350px;
+    height: 400px;
   }
 `;
 
