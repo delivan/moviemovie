@@ -9,6 +9,10 @@ const Container = styled.div`
   width: 100%;
   position: relative;
   padding: 50px;
+
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `;
 
 const Backdrop = styled.div`
