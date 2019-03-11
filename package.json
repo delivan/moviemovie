@@ -25,7 +25,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "homepage": "https://hyuk22.github.io/movielist",
+  "homepage": "https://moviemovie.ga",
   "browserslist": [
     ">0.2%",
     "not dead",
