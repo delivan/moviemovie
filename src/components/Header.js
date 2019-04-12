@@ -36,7 +36,11 @@ const SLink = styled(Link)`
   justify-content: center;
 `;
 
-const Header = ({ location: { pathname } }) => (
+const LocalePicker = styled.select``;
+
+const LocaleItem = styled.option``;
+
+const Header = ({ changeLocale, location: { pathname } }) => (
   <Nav>
     <List>
       <ListItem current={pathname === "/"}>
@@ -49,6 +53,10 @@ const Header = ({ location: { pathname } }) => (
         <SLink to="/search">검색</SLink>
       </ListItem>
     </List>
+    <LocalePicker onChange={changeLocale}>
+      <LocaleItem value="kr">한국어</LocaleItem>
+      <LocaleItem value="en">English</LocaleItem>
+    </LocalePicker>
   </Nav>
 );
 

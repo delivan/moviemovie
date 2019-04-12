@@ -13,11 +13,14 @@ const Text = styled.span`
   font-size: 20px;
 `;
 
-const ErrorMessage = ({ text }) => (
-  <Container>
-    <Text>{text}</Text>
-  </Container>
-);
+const ErrorMessage = ({ text }) => {
+  console.log("text", text);
+  return (
+    <Container>
+      <Text>{text}</Text>
+    </Container>
+  );
+};
 
 ErrorMessage.propTypes = {
   text: Proptypes.string.isRequired
