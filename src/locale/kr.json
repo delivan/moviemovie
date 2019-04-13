@@ -1,3 +1,14 @@
 {
-  "cantGetMovieError": "영화를 가져오지 못했습니다."
+  "cantSearchError": "해당 검색어로 찾지 못했습니다.",
+  "nothingFound": "아무것도 찾지 못했습니다",
+  "tv": "TV",
+  "enterSearchTerm": "검색어를 입력하세요...",
+  "airingToday": "오늘 방영 예정",
+  "onTheAir": "방영중",
+  "upcoming": "개봉 예정",
+  "nowPlaying": "상영중",
+  "popular": "인기",
+  "search": "검색",
+  "movie": "영화",
+  "cantGetError": "데이터를 가져오지 못했습니다"
 }

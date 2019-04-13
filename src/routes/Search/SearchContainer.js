@@ -1,6 +1,7 @@
 import React from "react";
 import SearchPresenter from "./SearchPresenter";
 import { movieAPI, tvAPI } from "../../api";
+import TranslatedString from "components/TranslatedString";
 
 export default class extends React.Component {
   constructor(props) {
@@ -66,8 +67,10 @@ export default class extends React.Component {
         loading: false
       });
     } catch (error) {
-      console.log(error);
-      this.setState({ error: "Can't Search by term", loading: false });
+      this.setState({
+        error: <TranslatedString string="cantSearchError" />,
+        loading: false
+      });
     }
   }
 

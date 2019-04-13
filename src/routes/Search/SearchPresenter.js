@@ -5,6 +5,7 @@ import Loader from "components/Loader";
 import Section from "components/Section";
 import ErrorMessage from "../../components/ErrorMessage";
 import Poster from "components/Poster";
+import TranslatedString from "components/TranslatedString";
 
 const Container = styled.div`
   padding: 20px 20px;
@@ -41,7 +42,7 @@ const SearchPresenter = ({
     <Container>
       <Form onSubmit={handleSubmit}>
         <Input
-          placeholder="검색어를 입력하세요..."
+          placeholder="Enter your search term..."
           value={searchTerm}
           onChange={handleChange}
         />
@@ -51,7 +52,7 @@ const SearchPresenter = ({
       ) : (
         <Results>
           {movieResults && movieResults.length > 0 && (
-            <Section title="영화">
+            <Section title={<TranslatedString string="movie" />}>
               {movieResults.map(movie => (
                 <Poster
                   key={movie.id}
@@ -68,7 +69,7 @@ const SearchPresenter = ({
             </Section>
           )}
           {tvResults && tvResults.length > 0 && (
-            <Section title="TV 프로그램">
+            <Section title={<TranslatedString string="tv" />}>
               {tvResults.map(tvShow => (
                 <Poster
                   key={tvShow.id}
@@ -91,7 +92,9 @@ const SearchPresenter = ({
         movieResults &&
         movieResults.length === 0 &&
         tvResults &&
-        tvResults.length === 0 && <ErrorMessage text={"Nothing found"} />}
+        tvResults.length === 0 && (
+          <ErrorMessage text={<TranslatedString string="nothingFound" />} />
+        )}
     </Container>
   );
 };

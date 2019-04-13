@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
+import TranslatedString from "components/TranslatedString";
 
 const Nav = styled.header`
   color: white;
@@ -44,13 +45,17 @@ const Header = ({ changeLocale, location: { pathname } }) => (
   <Nav>
     <List>
       <ListItem current={pathname === "/"}>
-        <SLink to="/">영화</SLink>
+        <SLink to="/">
+          <TranslatedString string="movie" />
+        </SLink>
       </ListItem>
       <ListItem current={pathname === "/tv"}>
         <SLink to="/tv">TV</SLink>
       </ListItem>
       <ListItem current={pathname === "/search"}>
-        <SLink to="/search">검색</SLink>
+        <SLink to="/search">
+          <TranslatedString string="search" />
+        </SLink>
       </ListItem>
     </List>
     <LocalePicker onChange={changeLocale}>

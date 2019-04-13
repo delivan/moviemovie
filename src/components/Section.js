@@ -31,7 +31,7 @@ const Section = ({ title, children }) => (
 );
 
 Section.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node

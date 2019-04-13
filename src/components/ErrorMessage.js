@@ -1,5 +1,5 @@
 import React from "react";
-import Proptypes from "prop-types";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -14,7 +14,6 @@ const Text = styled.span`
 `;
 
 const ErrorMessage = ({ text }) => {
-  console.log("text", text);
   return (
     <Container>
       <Text>{text}</Text>
@@ -23,7 +22,7 @@ const ErrorMessage = ({ text }) => {
 };
 
 ErrorMessage.propTypes = {
-  text: Proptypes.string.isRequired
+  text: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired
 };
 
 export default ErrorMessage;

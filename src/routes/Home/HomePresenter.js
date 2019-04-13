@@ -1,11 +1,12 @@
 import React from "react";
-import Proptypes from "prop-types";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Section from "components/Section";
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
 import Poster from "../../components/Poster";
+import TranslatedString from "components/TranslatedString";
 
 const Container = styled.div`
   padding: 0 20px;
@@ -18,7 +19,7 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) =>
   ) : (
     <Container>
       {popular && popular.length > 0 && (
-        <Section title="인기">
+        <Section title={<TranslatedString string="popular" />}>
           {popular.map(movie => (
             <Poster
               key={movie.id}
@@ -33,7 +34,7 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) =>
         </Section>
       )}
       {nowPlaying && nowPlaying.length > 0 && (
-        <Section title="상영중">
+        <Section title={<TranslatedString string="nowPlaying" />}>
           {nowPlaying.map(movie => (
             <Poster
               key={movie.id}
@@ -48,7 +49,7 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) =>
         </Section>
       )}
       {upcoming && upcoming.length > 0 && (
-        <Section title="개봉 예정">
+        <Section title={<TranslatedString string="upcoming" />}>
           {upcoming.map(movie => (
             <Poster
               key={movie.id}
@@ -67,11 +68,11 @@ const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) =>
   );
 
 HomePresenter.propTypes = {
-  nowPlaying: Proptypes.array,
-  upcoming: Proptypes.array,
-  popular: Proptypes.array,
-  error: Proptypes.string,
-  loading: Proptypes.bool.isRequired
+  nowPlaying: PropTypes.array,
+  upcoming: PropTypes.array,
+  popular: PropTypes.array,
+  error: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  loading: PropTypes.bool.isRequired
 };
 
 export default HomePresenter;

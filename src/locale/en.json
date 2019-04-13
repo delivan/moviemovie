@@ -1,3 +1,14 @@
 {
-  "cantGetMovieError": "Can't get Movies"
+  "cantSearchError": "Can't search by term",
+  "nothingFound": "Nothing found",
+  "tv": "TV",
+  "enterSearchTerm": "Enter your search term...",
+  "airingToday": "Airing today",
+  "onTheAir": "On the air",
+  "upcoming": "Upcoming",
+  "nowPlaying": "Now playing",
+  "popular": "Popular",
+  "search": "Search",
+  "movie": "Movie",
+  "cantGetError": "Can't get Data"
 }

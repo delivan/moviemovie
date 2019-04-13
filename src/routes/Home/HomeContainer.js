@@ -26,11 +26,10 @@ export default class extends React.Component {
       const {
         data: { results: popular }
       } = await movieAPI.getPopular();
-      throw Error("wow");
       this.setState({ nowPlaying, upcoming, popular, loading: false });
     } catch (error) {
       this.setState({
-        error: <TranslatedString string={"cantGetMovieError"} />,
+        error: <TranslatedString string="cantGetError" />,
         loading: false
       });
     }
