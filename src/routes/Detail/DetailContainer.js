@@ -52,7 +52,7 @@ export default withContext(class extends React.Component {
   componentDidUpdate(prevProps) {
     const { locale } = this.props.lang;
     if (locale !== prevProps.lang.locale) {
-      this.fetchDetail()
+      this.fetchDetail();
     }
   }
 
