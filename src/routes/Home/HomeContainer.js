@@ -1,10 +1,10 @@
 import React from "react";
 import HomePresenter from "./HomePresenter";
-import Context from "components/Context";
+import { withContext } from "components/Context";
 import TranslatedString from "components/TranslatedString";
 import { movieAPI } from "api";
 
-export default class extends React.Component {
+export default withContext(class extends React.Component {
   state = {
     nowPlaying: null,
     upcoming: null,
@@ -13,19 +13,18 @@ export default class extends React.Component {
     loading: true
   };
 
-  static contextType = Context;
-
   async componentDidMount() {
+    const { locale } = this.props.lang;
     try {
       const {
         data: { results: nowPlaying }
-      } = await movieAPI.getNowPlaying();
+      } = await movieAPI.getNowPlaying(locale);
       const {
         data: { results: upcoming }
-      } = await movieAPI.getUpcoming();
+      } = await movieAPI.getUpcoming(locale);
       const {
         data: { results: popular }
-      } = await movieAPI.getPopular();
+      } = await movieAPI.getPopular(locale);
       this.setState({ nowPlaying, upcoming, popular, loading: false });
     } catch (error) {
       this.setState({
@@ -34,6 +33,30 @@ export default class extends React.Component {
       });
     }
   }
+  async componentDidUpdate(prevProps) {
+    const { locale } = this.props.lang;
+    if (locale !== prevProps.lang.locale) {
+      this.setState({ loading: true });
+      
+      try {
+        const {
+          data: { results: nowPlaying }
+        } = await movieAPI.getNowPlaying(locale);
+        const {
+          data: { results: upcoming }
+        } = await movieAPI.getUpcoming(locale);
+        const {
+          data: { results: popular }
+        } = await movieAPI.getPopular(locale);
+        this.setState({ nowPlaying, upcoming, popular, loading: false });
+      } catch (error) {
+        this.setState({
+          error: <TranslatedString string="cantGetError" />,
+          loading: false
+        });
+      }
+    }
+  } 
 
   render() {
     const { nowPlaying, upcoming, popular, error, loading } = this.state;
@@ -48,4 +71,4 @@ export default class extends React.Component {
       />
     );
   }
-}
+});

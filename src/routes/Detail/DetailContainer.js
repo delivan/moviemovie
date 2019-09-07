@@ -1,8 +1,9 @@
 import React from "react";
 import DetailPresenter from "./DetailPresenter";
+import { withContext } from "components/Context";
 import { movieAPI, tvAPI } from "../../api";
 
-export default class extends React.Component {
+export default withContext(class extends React.Component {
   constructor(props) {
     super(props);
     const {
@@ -17,12 +18,13 @@ export default class extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  fetchDetail = async () => {
     const {
       match: {
         params: { id }
       },
-      history: { push }
+      history: { push },
+      lang: { locale }
     } = this.props;
     const { isMovie } = this.state;
 
@@ -31,22 +33,26 @@ export default class extends React.Component {
       push("/");
     }
 
+    this.setState({ loading: true });
     try {
-      // let result;
-      // if (isMovie) {
-      //   ({ data: result } = await movieAPI.getDetails(id));
-      // } else {
-      //   ({ data: result }= await tvAPI.getDetails(id));
-      // }
-
       const { data: result } = isMovie
-        ? await movieAPI.getDetails(id)
-        : await tvAPI.getDetails(id);
+        ? await movieAPI.getDetails(locale, id)
+        : await tvAPI.getDetails(locale, id);
 
       this.setState({ result, loading: false });
     } catch (error) {
-      console.log(error);
       this.setState({ loading: false, error: "Can't get detail" });
+    }
+  }
+
+  componentDidMount() {
+    this.fetchDetail();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { locale } = this.props.lang;
+    if (locale !== prevProps.lang.locale) {
+      this.fetchDetail()
     }
   }
 
@@ -61,4 +67,4 @@ export default class extends React.Component {
       />
     );
   }
-}
+});

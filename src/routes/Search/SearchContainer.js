@@ -1,12 +1,12 @@
 import React from "react";
 import SearchPresenter from "./SearchPresenter";
+import { withContext } from "components/Context";
 import { movieAPI, tvAPI } from "../../api";
 import TranslatedString from "components/TranslatedString";
 
-export default class extends React.Component {
+export default withContext(class extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       movieResults: null,
       tvResults: null,
@@ -22,8 +22,6 @@ export default class extends React.Component {
     const {
       target: { value }
     } = e;
-
-    this.setState({ loading: true });
 
     this.setState({
       searchTerm: value
@@ -47,19 +45,19 @@ export default class extends React.Component {
   };
 
   async searchByTerm(term) {
-    const { searchTerm } = this.state;
+    if (!term) {
+      return;
+    }
+    const { locale } = this.props.lang;
 
+    this.setState({ loading: true });
     try {
       const {
         data: { results: movieResults }
-      } = await movieAPI.getSearch(term);
+      } = await movieAPI.getSearch(locale, term);
       const {
         data: { results: tvResults }
-      } = await tvAPI.getSearch(term);
-
-      if (!searchTerm) {
-        return;
-      }
+      } = await tvAPI.getSearch(locale, term);
 
       this.setState({
         movieResults,
@@ -71,6 +69,14 @@ export default class extends React.Component {
         error: <TranslatedString string="cantSearchError" />,
         loading: false
       });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { searchTerm } = this.state;
+    const { locale } = this.props.lang;
+    if (locale !== prevProps.lang.locale) {
+      this.searchByTerm(searchTerm);
     }
   }
 
@@ -89,4 +95,4 @@ export default class extends React.Component {
       />
     );
   }
-}
+});
